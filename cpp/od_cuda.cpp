@@ -4,9 +4,9 @@ pthread_mutex_t mtx_od_debug_cuda;
 
 //-------------------------------------------------------------------------------------------------------------------------------//
 
-std::string class_names_file = "/home/jetson/firmware_v2/models/yolov4-tiny-presage.names";
-std::string cfg_file_name = "/home/jetson/firmware_v2/models/yolov4-tiny-presage.cfg";
-std::string weights_file_name = "/home/jetson/firmware_v2/models/yolov4-tiny-presage.weights";
+std::string class_names_file = "./models/yolov4-tiny-presage.names";
+std::string cfg_file_name = "./models/yolov4-tiny-presage.cfg";
+std::string weights_file_name = "./models/yolov4-tiny-presage.weights";
 
 std::vector<std::string> class_names;
 cv::dnn::Net *net;
@@ -86,7 +86,7 @@ void init_model()
     std::cout<<"Loading class names "<<std::endl;
     
     {
-        std::ifstream class_file("/home/jetson/firmware_v2/models/yolov4-tiny-presage.names");
+        std::ifstream class_file("./models/yolov4-tiny-presage.names");
         if (!class_file)
         {
             std::cerr << "failed to open classes.txt\n";
@@ -103,8 +103,8 @@ void init_model()
 
     std::cout<<"Loading weight files "<<std::endl; 
     net = new cv::dnn::Net();
-    *(net) = cv::dnn::readNetFromDarknet("/home/jetson/firmware_v2/models/yolov4-tiny-presage.cfg",
-                                        "/home/jetson/firmware_v2/models/yolov4-tiny-presage.weights");
+    *(net) = cv::dnn::readNetFromDarknet("./models/yolov4-tiny-presage.cfg",
+                                        "./models/yolov4-tiny-presage.weights");
     std::cout<<"Loaded weight files "<<std::endl; 
 
     std::cout<<"Setting DNN perfs "<<std::endl;
